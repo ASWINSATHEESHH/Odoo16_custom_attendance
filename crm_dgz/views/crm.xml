@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!--        kanban view-->
+        <record id="crm_lead_kanban_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.kanban.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_kanban_footer']" position="before">
+                    <div>
+                        <span
+                                style="font-weight:450; font-size:13px; color:#008818;">Lead duration
+                        </span>
+                        <span
+                                style="font-weight:400;font-size:13px;">
+                            <field name="stage_duration"/>
+                            ago
+                        </span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!--        form view-->
+        <record id="crm_form_view_inherited" model="ir.ui.view">
+            <field name="name">crm.view.form.inherited</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="stage_duration" readonly="1"/>
+                </xpath>
+                <xpath expr="//page[@name='lead']//group/group[3]//field[@name='source_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group/group[@name='opportunity_partner']" position="inside">
+                    <field name="source_id"/>
+                    <field name="affiliated_id"/>
+                </xpath>
+            </field>
+        </record>
+        <!--        tree view-->
+        <record id="crm_tree_view_inherited" model="ir.ui.view">
+            <field name="name">crm.view.tree.inherited</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='my_activity_date_deadline']" position="after">
+                    <field name="stage_duration"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

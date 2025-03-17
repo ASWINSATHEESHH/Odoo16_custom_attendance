@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hr_attendance_check_in_out_buttons_inherit" inherit_id="hr_attendance.HrAttendanceCheckInOutButtons">
+        <xpath expr="//button" position="attributes">
+            <attribute name="class">btn btn-danger align-self-center px-5 py-3 mt-4 mb-2</attribute>
+        </xpath>
+
+        <xpath expr="//button/span[1]" position="replace">
+            <span class="align-middle fs-2 me-3 text-white" t-if="!checked_in">Start Work</span>
+        </xpath>
+
+        <xpath expr="//button/span[2]" position="replace">
+            <span class="align-middle fs-2 ms-3" t-if="checked_in">End Work</span>
+        </xpath>
+    </template>
+</odoo>
